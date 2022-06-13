@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+    
+    <data>
+        
+        <variable
+            name="viewModel"
+            type="com.smartphone_codes.cupcakeshop.model.OrderViewModel" />
+
+        <variable
+            name="fragmentMain"
+            type="com.smartphone_codes.cupcakeshop.mainActivityFragments.FragmentMain" />
+        
+    </data>
+    
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/main_background"
+        tools:context=".mainActivityFragments.FragmentMain">
+    
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/order_board" />
+    
+        <Button
+            android:id="@+id/orderCupcakes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="45dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="45dp"
+            android:fontFamily="@font/ubuntu_light"
+            android:text="Order"
+            android:textAllCaps="false"
+            app:backgroundTint="@color/light"
+            app:cornerRadius="30dp"
+            android:onClick="@{()->fragmentMain.orderCupcake()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+    
+        <TextView
+            android:id="@+id/quantity_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/ubuntu_medium"
+            android:gravity="center_horizontal"
+            android:text="Quantity"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+    
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/quantity_text">
+    
+            <Button
+                android:id="@+id/quantity_less"
+                android:layout_width="45dp"
+                android:layout_height="55dp"
+                android:foreground="@drawable/ic_remove"
+                app:backgroundTint="#FFFFFF"
+                android:onClick="@{()->fragmentMain.quantityDec()}"
+                app:cornerRadius="40dp" />
+    
+            <TextView
+                android:id="@+id/cake_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginRight="32dp"
+                android:fontFamily="@font/ubuntu_medium"
+                android:text="@{viewModel.quantity.toString()}"
+                android:textColor="@color/dark"
+                android:textSize="21sp" />
+    
+            <Button
+                android:id="@+id/quantity_add"
+                android:layout_width="45dp"
+                android:layout_height="55dp"
+                android:foreground="@drawable/ic_add"
+                android:paddingBottom="0dp"
+                app:backgroundTint="#FFFFFF"
+                android:onClick="@{()->fragmentMain.quantityInc()}"
+                app:cornerRadius="40dp" />
+        </LinearLayout>
+    
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    
+</layout>

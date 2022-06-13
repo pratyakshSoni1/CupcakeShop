@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_main">
+
+    <fragment
+        android:id="@+id/fragment_flavours"
+        android:name="com.smartphone_codes.cupcakeshop.mainActivityFragments.FragmentFlavours"
+        android:label="@string/choose_flavor"
+        tools:layout="@layout/fragment_flavours">
+        <action
+            android:id="@+id/action_fragment_flavours_to_fragment_time"
+            app:destination="@id/fragment_time" />
+        <action
+            android:id="@+id/action_fragment_flavours_to_fragment_main"
+            app:destination="@id/fragment_main" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_main"
+        android:name="com.smartphone_codes.cupcakeshop.mainActivityFragments.FragmentMain"
+        android:label="@string/order_cupcakes"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_fragment_main_to_fragment_flavours"
+            app:destination="@id/fragment_flavours" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_time"
+        android:name="com.smartphone_codes.cupcakeshop.mainActivityFragments.FragmentTime"
+        android:label="@string/choose_pickup_date"
+        tools:layout="@layout/fragment_time">
+        <action
+            android:id="@+id/action_fragment_time_to_fragment_summary"
+            app:destination="@id/fragment_summary" />
+        <action
+            android:id="@+id/action_fragment_time_to_fragment_flavours"
+            app:destination="@id/fragment_flavours" />
+        <action
+            android:id="@+id/action_fragment_time_to_fragment_main"
+            app:destination="@id/fragment_main"
+            app:popUpTo="@id/fragment_main"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_summary"
+        android:name="com.smartphone_codes.cupcakeshop.mainActivityFragments.FragmentSummary"
+        android:label="@string/order_summary"
+        tools:layout="@layout/fragment_summary">
+        <action
+            android:id="@+id/action_fragment_summary_to_fragment_time"
+            app:destination="@id/fragment_time" />
+        <action
+            android:id="@+id/action_fragment_summary_to_fragment_main"
+            app:destination="@id/fragment_main"
+            app:popUpTo="@id/fragment_main"
+            app:popUpToInclusive="true"/>
+    </fragment>
+</navigation>

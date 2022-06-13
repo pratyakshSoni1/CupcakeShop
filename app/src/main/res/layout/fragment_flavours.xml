@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.smartphone_codes.cupcakeshop.model.OrderViewModel" />
+        <variable
+            name="flavourFragment"
+            type="com.smartphone_codes.cupcakeshop.mainActivityFragments.FragmentFlavours"/>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/main_background"
+        tools:context=".mainActivityFragments.fragment_flavours" >
+
+
+        <ImageView
+            android:id="@+id/board_image"
+            android:layout_width="250dp"
+            android:layout_height="420dp"
+            android:layout_marginTop="45dp"
+            android:src="@drawable/serve_board"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/flavour_recview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:clipToPadding="false"
+            android:paddingLeft="70dp"
+            android:paddingTop="15dp"
+            android:paddingRight="70dp"
+            android:paddingBottom="20dp"
+            app:layout_constraintEnd_toEndOf="@+id/board_image"
+            app:layout_constraintStart_toStartOf="@+id/board_image"
+            app:layout_constraintTop_toTopOf="@+id/board_image">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+
+        <TextView
+            android:id="@+id/flav_board_flavour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/ubuntu_light"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            tools:text="Flavour : Chocolate"
+            android:text="@{@string/flav_board_flavour(viewModel.flavourNameString)}"
+            app:layout_constraintStart_toStartOf="@+id/board_image"
+            app:layout_constraintTop_toBottomOf="@+id/flavour_recview" />
+
+        <TextView
+            android:id="@+id/flav_board_cost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/ubuntu_light"
+            android:text="@{@string/flav_board_cost(viewModel.price)}"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/flav_board_flavour"
+            app:layout_constraintTop_toBottomOf="@+id/flav_board_flavour"
+            tools:text="Cost : 39" />
+
+        <TextView
+            android:id="@+id/flav_board_qty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/ubuntu_light"
+            android:text="@{@string/flav_board_qty(viewModel.quantity)}"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/flav_board_cost"
+            app:layout_constraintTop_toBottomOf="@+id/flav_board_cost"
+            tools:text="Qty : 2" />
+
+
+        <Button
+            android:id="@+id/prev_cake_btn"
+            android:layout_width="35dp"
+            android:layout_height="45dp"
+            android:foreground="@drawable/_arrow_left"
+            android:onClick="@{()->flavourFragment.setNewFlavour(flavourFragment.changeFlavour(true))}"
+            app:backgroundTint="#FFFFFF"
+            app:cornerRadius="50dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/next_cake_btn"
+            app:layout_constraintStart_toStartOf="@+id/board_image" />
+
+        <Button
+            android:id="@+id/next_cake_btn"
+            android:layout_width="35dp"
+            android:layout_height="45dp"
+            android:onClick="@{()->flavourFragment.setNewFlavour(flavourFragment.changeFlavour(false))}"
+            android:layout_marginTop="100dp"
+            android:foreground="@drawable/arrow_right"
+            app:backgroundTint="#FFFFFF"
+            app:cornerRadius="50dp"
+            app:layout_constraintEnd_toEndOf="@+id/board_image"
+            app:layout_constraintTop_toTopOf="@+id/flavour_recview" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="45dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/board_image">
+
+            <Button
+                android:id="@+id/flavour_cancel_btn"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ubuntu_light"
+                android:onClick="@{()->flavourFragment.cancelOrder()}"
+                android:text="Cancel"
+                android:textColor="#FF2B2B"
+                app:cornerRadius="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/board_image"
+                app:rippleColor="#C3FF8989"
+                app:strokeColor="#B71C1C" />
+
+            <Button
+                android:id="@+id/flavour_next_btn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/ubuntu_light"
+                android:onClick="@{()->flavourFragment.goToNextScreen()}"
+                android:text="Pickup"
+                app:backgroundTint="#FFC529"
+                app:cornerRadius="30dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/board_image" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
